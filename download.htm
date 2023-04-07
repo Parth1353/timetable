@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en-US">
+	<head>
+
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <base href="https://viralhog.com/">
+    <link rel="icon" href="images/Favicon.ico">
+
+    <!-- Prefetch DNS for external assets -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//www.google-analytics.com">
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="//stackpath.bootstrapcdn.com">
+
+    <!-- External Styles & Scripts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha512-bnIvzh6FU75ZKxp0GXLH9bewza/OIw6dLVh9ICg0gogclmYGguQJWl8U30WpbsGTqbIiAwxTsbe76DErLq5EDQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.5/daterangepicker.min.js" integrity="sha512-mh+AjlD3nxImTUGisMpHXW03gE6F4WdQyvuFRkjecwuWLwD2yCijw4tKA3NsEFpA1C3neiKhGXPSIGSfCYPMlQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="js/always_include.js?1680808324"></script>
+
+          <!--Production Vue Version-->
+      <script src="https://cdn.jsdelivr.net/npm/vue@2.7.13"></script>
+      
+    <!-- Internal Styles & Scripts -->
+    <link href="js/videojs/skins/default/video-js.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/Reset.css">
+    <link rel="stylesheet" href="css/Utility.css">
+    <link rel="stylesheet" href="css/Site.css?7445">
+    <link rel="stylesheet" href="css/Mobile.css">
+    <link rel="stylesheet" href="css/Page-Video.css">
+
+        <link rel="stylesheet" href="css/Page-Library.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.5/daterangepicker.css" integrity="sha512-gp+RQIipEa1X7Sq1vYXnuOW96C4704yI1n0YB9T/KqdvqaEgL6nAuTSrKufUX3VBONq/TPuKiXGLVgBKicZ0KA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <script src="js/Site.js"></script>
+    <link rel="stylesheet" href="css/Page-Home.css" />
+    <title>ViralHog - Buy and sell the best viral videos!</title>
+
+	</head>
+
+	<body>
+    
+    <script>
+      
+      $(function() {
+        $.ajax({
+          type: 'get',
+          url: "item.php?a=get_all_time_licensed_video_count&hs=1",
+          dataType: "json"
+        }).done((res) => {
+          $('#licensed_video_count').append(`<span style="font-size: 14px;">All-Time Licensed Videos to Date: &nbsp;<span style="color: #FFB400; font-size: 16px;">${res.video_count}</span> and Counting</span>`);
+        }).fail((error) => {
+          console.log(error);
+        })
+
+        
+      })
+
+    </script>
+
+    <div id="myModal" class="modal fade">
+      <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title"></h5>
+            <button type="button" class="close Trans" data-dismiss="modal" aria-label="Close" title="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+
+          <div class="modal-body container">
+              <p>Loading...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <header class="Header-Top CLR header_element">
+      <div class="Header-Top-Inner CLR align-items-center d-flex">
+        
+        <div class="font-weight-bold ml-auto" id="licensed_video_count"></div>
+
+        <div class="ml-auto">
+          <h6>Language:</h6>
+          <ul>
+            <li><span title="English">EN</span></li>
+          </ul>
+        </div><!-- div class="header-Top-Language -->
+
+      </div> <!-- // div class="Header-Top-Inner CLR align-items-center -->
+
+    </header>
+
+    <header class="Header CLR  header_element">
+
+      <div class="Header-Inner CLR">
+
+        <div class="Header-Left">
+
+          <a href="https://viralhog.com/" class="Header-Logo">
+            <img src="images/Logo-Header.png" width="190" height="54" alt="Viralhog">
+          </a>
+
+          <nav class="Header-Nav">
+            <ul>
+              <li class="Active"><a href="list" class="Trans">latest</a></li>
+              <li class="Has-Sub-Menu">
+                <a href="#" class="Menu Trans dropdown-toggle" id="Header-Nav-About" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">about us</a>
+                <ul class="dropdown-menu" aria-labelledby="Header-Nav-About">
+                  <li><a href="contact_us" class="Trans">contact us</a></li>
+                  <li><a href="meet_us" class="Trans">meet our team</a></li>
+                  <li><a href="in_the_media" class="Trans">in the media</a></li>
+                  <li><a href="faq" class="Trans">faq</a></li>
+                  <li><a href="careers" class="Trans">careers</a></li>
+                  <li><a href="testimonial" class="Trans">testimonials</a></li>
+                  <li><a href="https://store.viralhog.com" target="_blank" class="Trans">store</a></li>
+                </ul>
+              </li>
+            </ul>
+          </nav>
+
+        </div> <!-- End Header - Left -->
+
+        <div class="Header-Right">
+
+          <div class="Header-Search">
+            <form action="list" method="GET">
+              <input type="search" value="" id="q" name="q" class="Trans" placeholder="Search by Link, ID, Text or Topic">
+            </form>
+          </div>
+
+          
+            <button class="Header-Button Header-Button-Login Trans btn" data-toggle="modal" data-target="#Modal-Login">Login</button>
+
+            
+          <button class="Header-Button-Menu Trans btn" data-toggle="modal" data-target="#Modal-Mobile">
+            <i class="fas fa-bars"></i>
+          </button>
+
+        </div> <!-- End Header - Right -->
+
+      </div>
+    </header>
+
+    <div class="Header-Spacer header_element"></div>
+
+    <div id="Modal-Login" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="Modal-Login" aria-hidden="true">
+
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+          <div class="modal-header">
+            <h5 class="modal-title" id="Modal-Login-Title">Login</h5>
+            <button type="button" class="close Trans" data-dismiss="modal" aria-label="Close" title="Close" id="login-modal-close-button">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+
+          <div class="modal-body">
+
+            <form class="Modal-Login-Form" id="Modal-Login-Form">
+
+              <div class="Modal-Login-Field">
+                <label for="Login-Username">
+                  <i class="fas fa-user"></i>
+                  <input type="email" id="user_email" name="user_email" placeholder="Your Email" required>
+                </label>
+              </div>
+
+              <div class="Modal-Login-Field">
+                <label for="Login-Password">
+                  <i class="fas fa-lock"></i>
+                  <input type="password" id="user_password" name="user_password" placeholder="Your Password" required>
+                </label>
+              </div>
+
+              <input type="submit" class="Trans" value="Login">
+              <input type="hidden" name="login" value="1">
+              
+              <a href="https://viralhog.com/password-reset/">Forgot your password?</a>
+
+            </form>
+
+            <script type="text/javascript">
+              $('#Modal-Login-Form').on('submit',function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                e.stopImmediatePropagation();
+                
+                $.ajax({
+                  type: "post",
+                  url: 'login.php',
+                  data: {
+                    'action': 'get_backend_login_url',
+                    'user_email': $('#user_email').val(),
+                    'user_password': $('#user_password').val(),   // https should prevent unencrypted password from being caught but might want to look into encrypting/hashing before sending to server
+                    'login' : 'login',
+                    'redirect': '',
+                    'hash': '',
+                    'ajax': 1
+                  },
+                  dataType: "json",
+                }).done(function(response){
+
+                    // console.log("Response from get backend login url");
+                    // console.log(response);
+
+                    alert(response.msg);
+
+                    if(!response.error){
+                      location.href = response.url;
+                    }
+
+                  }
+                );
+              });
+
+              $("#login-modal-close-button").on("click", function(e){
+                $('#user_email').val("");
+                $('#user_password').val("");
+              })
+  
+              $("#Modal-Login").on('hide.bs.modal', function(){
+                $('#user_email').val("");
+                $('#user_password').val("");
+              });
+
+            </script>
+
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <div id="Modal-Mobile" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="Modal-Mobile" aria-hidden="true">
+
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+          <div class="modal-header">
+            <h5 class="modal-title" id="Modal-Login-Title">Menu</h5>
+            <button type="button" class="close Trans" data-dismiss="modal" aria-label="Close" title="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+
+          <div class="modal-body">
+
+            <div class="Mobile-Menu-Buttons">
+
+                              <button style="color: white;" class="Mobile-Header-Button Header-Button-Login Trans btn" data-toggle="modal" data-target="#Modal-Login">Login</button>
+                
+            </div>
+
+            <div class="Mobile-Menu-Search">
+              <div class="Mobile-Menu-Search-Icon">
+                <i class="fas fa-search"></i>
+              </div>
+              <form action="list" method="GET">
+                <input type="search" value="" id="q" name="q" class="Trans" placeholder="Search by Link, ID, Text or Topic">
+              </form>
+
+            </div>
+
+            <nav class="Mobile-Menu-Nav">
+              <ul>
+                <li class="Active"><a href="list" class="Trans">Latest</a></li>
+                <li><a href="submit" class="Trans">Submit &amp; Make Money</a></li>
+                <li class="Has-Sub-Menu">
+                  <a href="#">About Us</a>
+                  <ul>
+                    <li><a href="contact_us" class="Trans">Contact Us</a></li>
+                    <li><a href="meet_us" class="Trans">Meet Our Team</a></li>
+                    <li><a href="in_the_media" class="Trans">In The Media</a></li>
+                    <li><a href="faq" class="Trans">FAQ</a></li>
+                    <li><a href="careers">Careers</a></li>
+                    <li><a href="testimonial">Testimonials</a></li>
+                    <li><a href="https://store.viralhog.com/">Store</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </nav>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+     
+<section class="Home-Top CLR">
+
+	<h1>BUY &amp; SELL <span>THE BEST</span> VIRAL VIDEOS</h1>
+
+	<div class="Home-Top-Main CLR">
+
+		<div class="Home-Top-Main-Center">
+			<img src="images/Icon-ViralHog.png" width="300" height="300">
+		</div>
+
+		<div class="Home-Top-Section Home-Top-Left">
+			<h3>Looking for a Video?</h3>
+			<a href="list" class="Home-Top-Button Trans btn">Browse Our Library</a>
+		</div>
+
+		<div class="Home-Top-Section Home-Top-Right">
+			<h3>Have a Video to Sell?</h3>
+			<a href="submit" class="Home-Top-Button Trans btn">Submit & Make Money</a>
+		</div>
+
+	</div>
+
+</section>
+
+          
+      <section class="Home-Videos Home-Videos-Green CLR container">
+        <div class="Home-Videos-Inner CLR">
+                      <a href="list?in_bookmark_folder_id=37" class="Home-Videos-Title Trans">
+              <h2>Trending</h2>
+              <i class="Trans fas fa-arrow-right"></i>
+            </a>
+                      <div class="Home-Videos-List row">
+            			        <div class="col-12 col-sm-12 col-md-4 col-lg-2">
+				        <div class="Video-Item" onmouseover="load_images('https://d30gsv7vvgi4g2.cloudfront.net/2018/Nov/1/ViralHog-dot-com-6805e33d33d6b37f11eb38149e938129_5_thumb.jpg',125); updateFrame(0,'https://d30gsv7vvgi4g2.cloudfront.net/2018/Nov/1/ViralHog-dot-com-6805e33d33d6b37f11eb38149e938129_5_thumb.jpg','thumbnail_n9rxcaget3',125);" onmouseout="cancelAnimationFrame(animationRequest);" >
+
+                  <a href="https://viralhog.com/v?t=n9rxcaget3" class="Video-Item-Thumb Trans">
+                    <img src="https://d30gsv7vvgi4g2.cloudfront.net/2018/Nov/1/ViralHog-dot-com-6805e33d33d6b37f11eb38149e938129_5_thumb.jpg" title="Sparks Fly As Bike Thief Grinds Through Lock At Mid Day In San Francisco " id="thumbnail_n9rxcaget3" class="rounded img-fluid" style="width:100%">
+                    <i class="Trans far fa-play-circle"></i>
+                    <span class="Video-Item-Timestamp">02:05</span>
+                  </a>
+
+        					<h3>
+      					  	<a href="https://viralhog.com/v?t=n9rxcaget3" class="Trans">Sparks Fly As Bike Thief Grinds Through Lock At Mid Day In San Francisco </a>
+                    
+                                      </h3>
+
+                </div>
+              </div>  
+              			        <div class="col-12 col-sm-12 col-md-4 col-lg-2">
+				        <div class="Video-Item" onmouseover="load_images('https://d30gsv7vvgi4g2.cloudfront.net/2018/Nov/29/ViralHog-dot-com-8ac075972b9378c11e2429ffe0d73cd0_6_thumb.jpg',10); updateFrame(0,'https://d30gsv7vvgi4g2.cloudfront.net/2018/Nov/29/ViralHog-dot-com-8ac075972b9378c11e2429ffe0d73cd0_6_thumb.jpg','thumbnail_3wxx7i4bri',10);" onmouseout="cancelAnimationFrame(animationRequest);" >
+
+                  <a href="https://viralhog.com/v?t=3wxx7i4bri" class="Video-Item-Thumb Trans">
+                    <img src="https://d30gsv7vvgi4g2.cloudfront.net/2018/Nov/29/ViralHog-dot-com-8ac075972b9378c11e2429ffe0d73cd0_6_thumb.jpg" title="Hey Pretty Bird " id="thumbnail_3wxx7i4bri" class="rounded img-fluid" style="width:100%">
+                    <i class="Trans far fa-play-circle"></i>
+                    <span class="Video-Item-Timestamp">00:09</span>
+                  </a>
+
+        					<h3>
+      					  	<a href="https://viralhog.com/v?t=3wxx7i4bri" class="Trans">Hey Pretty Bird </a>
+                    
+                                      </h3>
+
+                </div>
+              </div>  
+              			        <div class="col-12 col-sm-12 col-md-4 col-lg-2">
+				        <div class="Video-Item" onmouseover="load_images('https://d30gsv7vvgi4g2.cloudfront.net/2023/Apr/2/ViralHog-dot-com-6428f9660efec_3_thumb.jpg',110); updateFrame(0,'https://d30gsv7vvgi4g2.cloudfront.net/2023/Apr/2/ViralHog-dot-com-6428f9660efec_3_thumb.jpg','thumbnail_6ghn35h8i1',110);" onmouseout="cancelAnimationFrame(animationRequest);" >
+
+                  <a href="https://viralhog.com/v?t=6ghn35h8i1" class="Video-Item-Thumb Trans">
+                    <img src="https://d30gsv7vvgi4g2.cloudfront.net/2023/Apr/2/ViralHog-dot-com-6428f9660efec_3_thumb.jpg" title="Woman Gets Caught in Tornado While Recording Storm in Little Rock " id="thumbnail_6ghn35h8i1" class="rounded img-fluid" style="width:100%">
+                    <i class="Trans far fa-play-circle"></i>
+                    <span class="Video-Item-Timestamp">03:39</span>
+                  </a>
+
+        					<h3>
+      					  	<a href="https://viralhog.com/v?t=6ghn35h8i1" class="Trans">Woman Gets Caught in Tornado While Recording Storm in Little Rock </a>
+                    
+                                      </h3>
+
+                </div>
+              </div>  
+              			        <div class="col-12 col-sm-12 col-md-4 col-lg-2">
+				        <div class="Video-Item" onmouseover="load_images('https://d30gsv7vvgi4g2.cloudfront.net/2018/Nov/29/ViralHog-dot-com-4bc6eb81bc18976cc00f2b5df3afa13b_5_thumb.jpg',24); updateFrame(0,'https://d30gsv7vvgi4g2.cloudfront.net/2018/Nov/29/ViralHog-dot-com-4bc6eb81bc18976cc00f2b5df3afa13b_5_thumb.jpg','thumbnail_202z1c3xs3',24);" onmouseout="cancelAnimationFrame(animationRequest);" >
+
+                  <a href="https://viralhog.com/v?t=202z1c3xs3" class="Video-Item-Thumb Trans">
+                    <img src="https://d30gsv7vvgi4g2.cloudfront.net/2018/Nov/29/ViralHog-dot-com-4bc6eb81bc18976cc00f2b5df3afa13b_5_thumb.jpg" title="Burnout Goes Wrong " id="thumbnail_202z1c3xs3" class="rounded img-fluid" style="width:100%">
+                    <i class="Trans far fa-play-circle"></i>
+                    <span class="Video-Item-Timestamp">00:24</span>
+                  </a>
+
+        					<h3>
+      					  	<a href="https://viralhog.com/v?t=202z1c3xs3" class="Trans">Burnout Goes Wrong </a>
+                    
+                                      </h3>
+
+                </div>
+              </div>  
+              			        <div class="col-12 col-sm-12 col-md-4 col-lg-2">
+				        <div class="Video-Item" onmouseover="load_images('https://d30gsv7vvgi4g2.cloudfront.net/2018/Nov/8/ViralHog-dot-com-348000d468ae27dd341f809873b22889_4_thumb.jpg',30); updateFrame(0,'https://d30gsv7vvgi4g2.cloudfront.net/2018/Nov/8/ViralHog-dot-com-348000d468ae27dd341f809873b22889_4_thumb.jpg','thumbnail_o9b9njc24v',30);" onmouseout="cancelAnimationFrame(animationRequest);" >
+
+                  <a href="https://viralhog.com/v?t=o9b9njc24v" class="Video-Item-Thumb Trans">
+                    <img src="https://d30gsv7vvgi4g2.cloudfront.net/2018/Nov/8/ViralHog-dot-com-348000d468ae27dd341f809873b22889_4_thumb.jpg" title="Dog Stops Chicken Fight " id="thumbnail_o9b9njc24v" class="rounded img-fluid" style="width:100%">
+                    <i class="Trans far fa-play-circle"></i>
+                    <span class="Video-Item-Timestamp">00:29</span>
+                  </a>
+
+        					<h3>
+      					  	<a href="https://viralhog.com/v?t=o9b9njc24v" class="Trans">Dog Stops Chicken Fight </a>
+                    
+                                      </h3>
+
+                </div>
+              </div>  
+              		      </div>
+
+	      </div>
+
+	      <hr class="Home-Videos-Line">
+
+      </section>
+      
+      <section class="Home-Videos Home-Videos-Gray CLR container">
+        <div class="Home-Videos-Inner CLR">
+                      <a href="list?in_bookmark_folder_id=1" class="Home-Videos-Title Trans">
+              <h2>Greatest Hits</h2>
+              <i class="Trans fas fa-arrow-right"></i>
+            </a>
+                      <div class="Home-Videos-List row">
+            			        <div class="col-12 col-sm-12 col-md-4 col-lg-2">
+				        <div class="Video-Item" onmouseover="load_images('https://d30gsv7vvgi4g2.cloudfront.net/2022/Jan/5/ViralHog-dot-com-61d556c994d36_4_thumb.jpg',27); updateFrame(0,'https://d30gsv7vvgi4g2.cloudfront.net/2022/Jan/5/ViralHog-dot-com-61d556c994d36_4_thumb.jpg','thumbnail_76dhdho0ft',27);" onmouseout="cancelAnimationFrame(animationRequest);" >
+
+                  <a href="https://viralhog.com/v?t=76dhdho0ft" class="Video-Item-Thumb Trans">
+                    <img src="https://d30gsv7vvgi4g2.cloudfront.net/2022/Jan/5/ViralHog-dot-com-61d556c994d36_4_thumb.jpg" title="Little Girl Leads Horse " id="thumbnail_76dhdho0ft" class="rounded img-fluid" style="width:100%">
+                    <i class="Trans far fa-play-circle"></i>
+                    <span class="Video-Item-Timestamp"></span>
+                  </a>
+
+        					<h3>
+      					  	<a href="https://viralhog.com/v?t=76dhdho0ft" class="Trans">Little Girl Leads Horse </a>
+                    
+                    <br />253.4 M Youtube Views                  </h3>
+
+                </div>
+              </div>  
+              			        <div class="col-12 col-sm-12 col-md-4 col-lg-2">
+				        <div class="Video-Item" onmouseover="load_images('https://d30gsv7vvgi4g2.cloudfront.net/2022/Apr/6/ViralHog-dot-com-624d7efaed325_4_thumb.jpg',46); updateFrame(0,'https://d30gsv7vvgi4g2.cloudfront.net/2022/Apr/6/ViralHog-dot-com-624d7efaed325_4_thumb.jpg','thumbnail_4ky869vgad',46);" onmouseout="cancelAnimationFrame(animationRequest);" >
+
+                  <a href="https://viralhog.com/v?t=4ky869vgad" class="Video-Item-Thumb Trans">
+                    <img src="https://d30gsv7vvgi4g2.cloudfront.net/2022/Apr/6/ViralHog-dot-com-624d7efaed325_4_thumb.jpg" title="Moving Beads in Glass Bottles " id="thumbnail_4ky869vgad" class="rounded img-fluid" style="width:100%">
+                    <i class="Trans far fa-play-circle"></i>
+                    <span class="Video-Item-Timestamp"></span>
+                  </a>
+
+        					<h3>
+      					  	<a href="https://viralhog.com/v?t=4ky869vgad" class="Trans">Moving Beads in Glass Bottles </a>
+                    
+                    <br />206.1 M Youtube Views                  </h3>
+
+                </div>
+              </div>  
+              			        <div class="col-12 col-sm-12 col-md-4 col-lg-2">
+				        <div class="Video-Item" onmouseover="load_images('https://d30gsv7vvgi4g2.cloudfront.net/2021/Sep/18/ViralHog-dot-com-6146457ce4459_4_thumb.jpg',24); updateFrame(0,'https://d30gsv7vvgi4g2.cloudfront.net/2021/Sep/18/ViralHog-dot-com-6146457ce4459_4_thumb.jpg','thumbnail_bxlgek20ig',24);" onmouseout="cancelAnimationFrame(animationRequest);" >
+
+                  <a href="https://viralhog.com/v?t=bxlgek20ig" class="Video-Item-Thumb Trans">
+                    <img src="https://d30gsv7vvgi4g2.cloudfront.net/2021/Sep/18/ViralHog-dot-com-6146457ce4459_4_thumb.jpg" title="Good Samaritan Helps Push Stalled Car Off Highway  " id="thumbnail_bxlgek20ig" class="rounded img-fluid" style="width:100%">
+                    <i class="Trans far fa-play-circle"></i>
+                    <span class="Video-Item-Timestamp">00:25</span>
+                  </a>
+
+        					<h3>
+      					  	<a href="https://viralhog.com/v?t=bxlgek20ig" class="Trans">Good Samaritan Helps Push Stalled Car Off Highway  </a>
+                    
+                    <br />192.7 M Youtube Views                  </h3>
+
+                </div>
+              </div>  
+              			        <div class="col-12 col-sm-12 col-md-4 col-lg-2">
+				        <div class="Video-Item" onmouseover="load_images('https://d30gsv7vvgi4g2.cloudfront.net/2021/Sep/25/ViralHog-dot-com-614e76a7e2223_4_thumb.jpg',32); updateFrame(0,'https://d30gsv7vvgi4g2.cloudfront.net/2021/Sep/25/ViralHog-dot-com-614e76a7e2223_4_thumb.jpg','thumbnail_eruvq1zhqh',32);" onmouseout="cancelAnimationFrame(animationRequest);" >
+
+                  <a href="https://viralhog.com/v?t=eruvq1zhqh" class="Video-Item-Thumb Trans">
+                    <img src="https://d30gsv7vvgi4g2.cloudfront.net/2021/Sep/25/ViralHog-dot-com-614e76a7e2223_4_thumb.jpg" title="Toddler Attempts to Cross onto Glass Bridge " id="thumbnail_eruvq1zhqh" class="rounded img-fluid" style="width:100%">
+                    <i class="Trans far fa-play-circle"></i>
+                    <span class="Video-Item-Timestamp">00:31</span>
+                  </a>
+
+        					<h3>
+      					  	<a href="https://viralhog.com/v?t=eruvq1zhqh" class="Trans">Toddler Attempts to Cross onto Glass Bridge </a>
+                    
+                    <br />156.3 M Youtube Views                  </h3>
+
+                </div>
+              </div>  
+              			        <div class="col-12 col-sm-12 col-md-4 col-lg-2">
+				        <div class="Video-Item" onmouseover="load_images('https://d30gsv7vvgi4g2.cloudfront.net/2019/Jul/13/ViralHog-dot-com-f3c5fb97a93f0815fc55bf5d3bb6a8c8_4_thumb.jpg',19); updateFrame(0,'https://d30gsv7vvgi4g2.cloudfront.net/2019/Jul/13/ViralHog-dot-com-f3c5fb97a93f0815fc55bf5d3bb6a8c8_4_thumb.jpg','thumbnail_sdp94n1pku',19);" onmouseout="cancelAnimationFrame(animationRequest);" >
+
+                  <a href="https://viralhog.com/v?t=sdp94n1pku" class="Video-Item-Thumb Trans">
+                    <img src="https://d30gsv7vvgi4g2.cloudfront.net/2019/Jul/13/ViralHog-dot-com-f3c5fb97a93f0815fc55bf5d3bb6a8c8_4_thumb.jpg" title="Six-Eyed Sand Spider Buries Herself" id="thumbnail_sdp94n1pku" class="rounded img-fluid" style="width:100%">
+                    <i class="Trans far fa-play-circle"></i>
+                    <span class="Video-Item-Timestamp">00:19</span>
+                  </a>
+
+        					<h3>
+      					  	<a href="https://viralhog.com/v?t=sdp94n1pku" class="Trans">Six-Eyed Sand Spider Buries Herself</a>
+                    
+                    <br />155.8 M Youtube Views                  </h3>
+
+                </div>
+              </div>  
+              		      </div>
+
+	      </div>
+
+	      <hr class="Home-Videos-Line">
+
+      </section>
+      
+      <section class="Home-Videos Home-Videos-Green CLR container">
+        <div class="Home-Videos-Inner CLR">
+                      <a href="list?in_bookmark_folder_id=6" class="Home-Videos-Title Trans">
+              <h2>Animals</h2>
+              <i class="Trans fas fa-arrow-right"></i>
+            </a>
+                      <div class="Home-Videos-List row">
+            			        <div class="col-12 col-sm-12 col-md-4 col-lg-2">
+				        <div class="Video-Item" onmouseover="load_images('https://d30gsv7vvgi4g2.cloudfront.net/2018/Oct/29/ViralHog-dot-com-11eca3256b9ce6926f78dc37fce0ff33_4_thumb.jpg',75); updateFrame(0,'https://d30gsv7vvgi4g2.cloudfront.net/2018/Oct/29/ViralHog-dot-com-11eca3256b9ce6926f78dc37fce0ff33_4_thumb.jpg','thumbnail_hgolix5i0b',75);" onmouseout="cancelAnimationFrame(animationRequest);" >
+
+                  <a href="https://viralhog.com/v?t=hgolix5i0b" class="Video-Item-Thumb Trans">
+                    <img src="https://d30gsv7vvgi4g2.cloudfront.net/2018/Oct/29/ViralHog-dot-com-11eca3256b9ce6926f78dc37fce0ff33_4_thumb.jpg" title="Bobcat Attacks Turkey Hunter " id="thumbnail_hgolix5i0b" class="rounded img-fluid" style="width:100%">
+                    <i class="Trans far fa-play-circle"></i>
+                    <span class="Video-Item-Timestamp">01:15</span>
+                  </a>
+
+        					<h3>
+      					  	<a href="https://viralhog.com/v?t=hgolix5i0b" class="Trans">Bobcat Attacks Turkey Hunter </a>
+                    
+                                      </h3>
+
+                </div>
+              </div>  
+              			        <div class="col-12 col-sm-12 col-md-4 col-lg-2">
+				        <div class="Video-Item" onmouseover="load_images('https://d30gsv7vvgi4g2.cloudfront.net/2018/Oct/26/ViralHog-dot-com-d98a6ba6ab47c6aa1567e38249a6e6ee_4_thumb.jpg',11); updateFrame(0,'https://d30gsv7vvgi4g2.cloudfront.net/2018/Oct/26/ViralHog-dot-com-d98a6ba6ab47c6aa1567e38249a6e6ee_4_thumb.jpg','thumbnail_41y23q0h5o',11);" onmouseout="cancelAnimationFrame(animationRequest);" >
+
+                  <a href="https://viralhog.com/v?t=41y23q0h5o" class="Video-Item-Thumb Trans">
+                    <img src="https://d30gsv7vvgi4g2.cloudfront.net/2018/Oct/26/ViralHog-dot-com-d98a6ba6ab47c6aa1567e38249a6e6ee_4_thumb.jpg" title="Despite Standing Still, this Snake Still Takes a Bite  " id="thumbnail_41y23q0h5o" class="rounded img-fluid" style="width:100%">
+                    <i class="Trans far fa-play-circle"></i>
+                    <span class="Video-Item-Timestamp">00:10</span>
+                  </a>
+
+        					<h3>
+      					  	<a href="https://viralhog.com/v?t=41y23q0h5o" class="Trans">Despite Standing Still, this Snake Still Takes a Bite  </a>
+                    
+                                      </h3>
+
+                </div>
+              </div>  
+              			        <div class="col-12 col-sm-12 col-md-4 col-lg-2">
+				        <div class="Video-Item" onmouseover="load_images('https://d30gsv7vvgi4g2.cloudfront.net/2023/Apr/5/ViralHog-dot-com-642dd42462b34_2_thumb.jpg',6); updateFrame(0,'https://d30gsv7vvgi4g2.cloudfront.net/2023/Apr/5/ViralHog-dot-com-642dd42462b34_2_thumb.jpg','thumbnail_f88zvyr2ry',6);" onmouseout="cancelAnimationFrame(animationRequest);" >
+
+                  <a href="https://viralhog.com/v?t=f88zvyr2ry" class="Video-Item-Thumb Trans">
+                    <img src="https://d30gsv7vvgi4g2.cloudfront.net/2023/Apr/5/ViralHog-dot-com-642dd42462b34_2_thumb.jpg" title="Owl Tries to Grab Parrot Through Window " id="thumbnail_f88zvyr2ry" class="rounded img-fluid" style="width:100%">
+                    <i class="Trans far fa-play-circle"></i>
+                    <span class="Video-Item-Timestamp"></span>
+                  </a>
+
+        					<h3>
+      					  	<a href="https://viralhog.com/v?t=f88zvyr2ry" class="Trans">Owl Tries to Grab Parrot Through Window </a>
+                    
+                                      </h3>
+
+                </div>
+              </div>  
+              			        <div class="col-12 col-sm-12 col-md-4 col-lg-2">
+				        <div class="Video-Item" onmouseover="load_images('https://d30gsv7vvgi4g2.cloudfront.net/2023/Apr/5/ViralHog-dot-com-39fd7c11e2de6485ed255f04678ec97c.jpg',); updateFrame(0,'https://d30gsv7vvgi4g2.cloudfront.net/2023/Apr/5/ViralHog-dot-com-39fd7c11e2de6485ed255f04678ec97c.jpg','thumbnail_rw61b6095y',);" onmouseout="cancelAnimationFrame(animationRequest);" >
+
+                  <a href="https://viralhog.com/v?t=rw61b6095y" class="Video-Item-Thumb Trans">
+                    <img src="https://d30gsv7vvgi4g2.cloudfront.net/2023/Apr/5/ViralHog-dot-com-39fd7c11e2de6485ed255f04678ec97c.jpg" title="Feeding Some Very Large Porcupines " id="thumbnail_rw61b6095y" class="rounded img-fluid" style="width:100%">
+                    <i class="Trans far fa-play-circle"></i>
+                    <span class="Video-Item-Timestamp">00:15</span>
+                  </a>
+
+        					<h3>
+      					  	<a href="https://viralhog.com/v?t=rw61b6095y" class="Trans">Feeding Some Very Large Porcupines </a>
+                    
+                                      </h3>
+
+                </div>
+              </div>  
+              			        <div class="col-12 col-sm-12 col-md-4 col-lg-2">
+				        <div class="Video-Item" onmouseover="load_images('https://d30gsv7vvgi4g2.cloudfront.net/2023/Apr/5/ViralHog-dot-com-83144a204a0cef5af927a20b90b1a4dc.jpg',); updateFrame(0,'https://d30gsv7vvgi4g2.cloudfront.net/2023/Apr/5/ViralHog-dot-com-83144a204a0cef5af927a20b90b1a4dc.jpg','thumbnail_497bxjxfkw',);" onmouseout="cancelAnimationFrame(animationRequest);" >
+
+                  <a href="https://viralhog.com/v?t=497bxjxfkw" class="Video-Item-Thumb Trans">
+                    <img src="https://d30gsv7vvgi4g2.cloudfront.net/2023/Apr/5/ViralHog-dot-com-83144a204a0cef5af927a20b90b1a4dc.jpg" title="Bear Smells Food Inside the Car " id="thumbnail_497bxjxfkw" class="rounded img-fluid" style="width:100%">
+                    <i class="Trans far fa-play-circle"></i>
+                    <span class="Video-Item-Timestamp">00:55</span>
+                  </a>
+
+        					<h3>
+      					  	<a href="https://viralhog.com/v?t=497bxjxfkw" class="Trans">Bear Smells Food Inside the Car </a>
+                    
+                                      </h3>
+
+                </div>
+              </div>  
+              		      </div>
+
+	      </div>
+
+	      <hr class="Home-Videos-Line">
+
+      </section>
+      
+      <section class="Home-Videos Home-Videos-Gray CLR container">
+        <div class="Home-Videos-Inner CLR">
+                      <a href="list?in_bookmark_folder_id=7" class="Home-Videos-Title Trans">
+              <h2>Humor</h2>
+              <i class="Trans fas fa-arrow-right"></i>
+            </a>
+                      <div class="Home-Videos-List row">
+            			        <div class="col-12 col-sm-12 col-md-4 col-lg-2">
+				        <div class="Video-Item" onmouseover="load_images('https://d30gsv7vvgi4g2.cloudfront.net/2018/Oct/26/ViralHog-dot-com-d98a6ba6ab47c6aa1567e38249a6e6ee_4_thumb.jpg',11); updateFrame(0,'https://d30gsv7vvgi4g2.cloudfront.net/2018/Oct/26/ViralHog-dot-com-d98a6ba6ab47c6aa1567e38249a6e6ee_4_thumb.jpg','thumbnail_41y23q0h5o',11);" onmouseout="cancelAnimationFrame(animationRequest);" >
+
+                  <a href="https://viralhog.com/v?t=41y23q0h5o" class="Video-Item-Thumb Trans">
+                    <img src="https://d30gsv7vvgi4g2.cloudfront.net/2018/Oct/26/ViralHog-dot-com-d98a6ba6ab47c6aa1567e38249a6e6ee_4_thumb.jpg" title="Despite Standing Still, this Snake Still Takes a Bite  " id="thumbnail_41y23q0h5o" class="rounded img-fluid" style="width:100%">
+                    <i class="Trans far fa-play-circle"></i>
+                    <span class="Video-Item-Timestamp">00:10</span>
+                  </a>
+
+        					<h3>
+      					  	<a href="https://viralhog.com/v?t=41y23q0h5o" class="Trans">Despite Standing Still, this Snake Still Takes a Bite  </a>
+                    
+                                      </h3>
+
+                </div>
+              </div>  
+              			        <div class="col-12 col-sm-12 col-md-4 col-lg-2">
+				        <div class="Video-Item" onmouseover="load_images('https://d30gsv7vvgi4g2.cloudfront.net/2018/Nov/29/ViralHog-dot-com-ba01d58ab5652bd8c037ac1143658dcf_5_thumb.jpg',8); updateFrame(0,'https://d30gsv7vvgi4g2.cloudfront.net/2018/Nov/29/ViralHog-dot-com-ba01d58ab5652bd8c037ac1143658dcf_5_thumb.jpg','thumbnail_lxw58vr3uj',8);" onmouseout="cancelAnimationFrame(animationRequest);" >
+
+                  <a href="https://viralhog.com/v?t=lxw58vr3uj" class="Video-Item-Thumb Trans">
+                    <img src="https://d30gsv7vvgi4g2.cloudfront.net/2018/Nov/29/ViralHog-dot-com-ba01d58ab5652bd8c037ac1143658dcf_5_thumb.jpg" title="Don't Pick Me Up " id="thumbnail_lxw58vr3uj" class="rounded img-fluid" style="width:100%">
+                    <i class="Trans far fa-play-circle"></i>
+                    <span class="Video-Item-Timestamp">00:08</span>
+                  </a>
+
+        					<h3>
+      					  	<a href="https://viralhog.com/v?t=lxw58vr3uj" class="Trans">Don't Pick Me Up </a>
+                    
+                                      </h3>
+
+                </div>
+              </div>  
+              			        <div class="col-12 col-sm-12 col-md-4 col-lg-2">
+				        <div class="Video-Item" onmouseover="load_images('https://d30gsv7vvgi4g2.cloudfront.net/2018/Oct/29/ViralHog-dot-com-295b1a08f997486be7f4c47abd3d942a_99_thumb.jpg',121); updateFrame(0,'https://d30gsv7vvgi4g2.cloudfront.net/2018/Oct/29/ViralHog-dot-com-295b1a08f997486be7f4c47abd3d942a_99_thumb.jpg','thumbnail_tpuip0xbcq',121);" onmouseout="cancelAnimationFrame(animationRequest);" >
+
+                  <a href="https://viralhog.com/v?t=tpuip0xbcq" class="Video-Item-Thumb Trans">
+                    <img src="https://d30gsv7vvgi4g2.cloudfront.net/2018/Oct/29/ViralHog-dot-com-295b1a08f997486be7f4c47abd3d942a_99_thumb.jpg" title="Fighting The Forces of Dream Land!  " id="thumbnail_tpuip0xbcq" class="rounded img-fluid" style="width:100%">
+                    <i class="Trans far fa-play-circle"></i>
+                    <span class="Video-Item-Timestamp">02:01</span>
+                  </a>
+
+        					<h3>
+      					  	<a href="https://viralhog.com/v?t=tpuip0xbcq" class="Trans">Fighting The Forces of Dream Land!  </a>
+                    
+                                      </h3>
+
+                </div>
+              </div>  
+              			        <div class="col-12 col-sm-12 col-md-4 col-lg-2">
+				        <div class="Video-Item" onmouseover="load_images('https://d30gsv7vvgi4g2.cloudfront.net/2018/Nov/1/ViralHog-dot-com-58f1a2c01ef97b6cc7c659a4b69996fb_5_thumb.jpg',30); updateFrame(0,'https://d30gsv7vvgi4g2.cloudfront.net/2018/Nov/1/ViralHog-dot-com-58f1a2c01ef97b6cc7c659a4b69996fb_5_thumb.jpg','thumbnail_cz8m6m9198',30);" onmouseout="cancelAnimationFrame(animationRequest);" >
+
+                  <a href="https://viralhog.com/v?t=cz8m6m9198" class="Video-Item-Thumb Trans">
+                    <img src="https://d30gsv7vvgi4g2.cloudfront.net/2018/Nov/1/ViralHog-dot-com-58f1a2c01ef97b6cc7c659a4b69996fb_5_thumb.jpg" title="Scoot On Out Of Here " id="thumbnail_cz8m6m9198" class="rounded img-fluid" style="width:100%">
+                    <i class="Trans far fa-play-circle"></i>
+                    <span class="Video-Item-Timestamp">00:29</span>
+                  </a>
+
+        					<h3>
+      					  	<a href="https://viralhog.com/v?t=cz8m6m9198" class="Trans">Scoot On Out Of Here </a>
+                    
+                                      </h3>
+
+                </div>
+              </div>  
+              			        <div class="col-12 col-sm-12 col-md-4 col-lg-2">
+				        <div class="Video-Item" onmouseover="load_images('https://d30gsv7vvgi4g2.cloudfront.net/2018/Oct/26/ViralHog-dot-com-06261510180a3ee6186f09b843ab1ff4_6_thumb.jpg',73); updateFrame(0,'https://d30gsv7vvgi4g2.cloudfront.net/2018/Oct/26/ViralHog-dot-com-06261510180a3ee6186f09b843ab1ff4_6_thumb.jpg','thumbnail_f52fqo4m0j',73);" onmouseout="cancelAnimationFrame(animationRequest);" >
+
+                  <a href="https://viralhog.com/v?t=f52fqo4m0j" class="Video-Item-Thumb Trans">
+                    <img src="https://d30gsv7vvgi4g2.cloudfront.net/2018/Oct/26/ViralHog-dot-com-06261510180a3ee6186f09b843ab1ff4_6_thumb.jpg" title="Jet powered Porta-Potty " id="thumbnail_f52fqo4m0j" class="rounded img-fluid" style="width:100%">
+                    <i class="Trans far fa-play-circle"></i>
+                    <span class="Video-Item-Timestamp">01:12</span>
+                  </a>
+
+        					<h3>
+      					  	<a href="https://viralhog.com/v?t=f52fqo4m0j" class="Trans">Jet powered Porta-Potty </a>
+                    
+                                      </h3>
+
+                </div>
+              </div>  
+              		      </div>
+
+	      </div>
+
+	      <hr class="Home-Videos-Line">
+
+      </section>
+          
+    <script type="text/javascript">
+      $(function(){
+        $('.ls-modal').on('click', function(e){
+          e.preventDefault();
+          $('#myModal').find('.modal-title').html($(this).attr('title'));
+          $('#myModal').modal('show').find('.modal-body').load($(this).attr('href'));
+        });
+        $(window).resize(function(){
+          footerToBottom();
+        });
+        function footerToBottom(){
+          let documentHeight = $(document).height();
+          let windowHeight = $(window).height();
+          if(documentHeight == windowHeight){
+            let footerHeight = $("#vhFooter").height();
+            let newFooterTop = windowHeight - footerHeight;
+            $("#vhFooter").offset({top: newFooterTop});
+          }
+        }
+        footerToBottom();
+      });
+    </script>
+
+    <div id="vhFooter">
+
+      <footer class="Footer CLR footer_element">
+        <div class="Footer-Inner CLR row m-0">
+          <div class="col-12 m-0 p-0">
+            <div class="row m-0 p-0">
+              <div class="col-lg-4 col-md-12 m-0 p-0">
+                <a href="https://viralhog.com/">
+                  <img src="images/Logo-Footer.png" width="190" height="54" alt="Viralhog">
+                </a>
+              </div>
+              <div class="col-lg-4 col-md-12 m-0 p-0">
+                <div class="row justify-content-center">
+                  <div class="col-8">
+                    <div class="row">
+                      <div class="col p-2">
+                        <a href="https://www.youtube.com/viralhog" style="color: white;" target="_blank">
+                          <i class="fab fa-youtube fa-lg"></i>
+                        </a>
+                      </div>
+                      <div class="col p-2">
+                        <a href="https://www.facebook.com/viralhog/" style="color: white;" target="_blank">
+                          <i class="fab fa-facebook fa-lg"></i>
+                        </a>
+                      </div>
+                      <div class="col p-2">
+                        <a href="https://www.instagram.com/viralhog/" style="color: white;" target="_blank">
+                          <i class="fab fa-instagram fa-lg"></i>
+                        </a>
+                      </div>
+                      <div class="col p-2">
+                        <a href="https://www.twitter.com/ViralHog" style="color: white;" target="_blank">
+                          <i class="fab fa-twitter fa-lg"></i>
+                        </a>
+                      </div>
+                      <div class="col p-2">
+                        <a href="https://www.linkedin.com/company/viralhog" style="color: white;" target="_blank">
+                          <i class="fab fa-linkedin fa-lg"></i>
+                        </a>
+                      </div>
+                      <div class="col p-2">
+                        <a href="https://www.tiktok.com/@viralhog" style="color: white;" target="_blank">
+                          <img src="images/tiktok.svg" style="max-width: 20px; color: white; cursor: pointer;" />
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-12">
+                <ul class="Footer-Nav">
+                                  <li style="display: inline; padding-right: 15px;"><a href="contact_us" class="Trans">Contact Us</a></li>
+                  <li style="display: inline; padding-right: 15px;"><a href="faq" class="Trans">FAQ</a></li>
+                  <li style="display: inline; padding-right: 15px;"><a href="terms-service" class="Trans">Terms</a></li>
+                  <li style="display: inline; padding-right: 15px;"><a href="privacy-policy" class="Trans">Privacy</a></li>
+                  <li style="display: inline;"><a href="dmca" class="Trans">DMCA</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+      <footer class="Footer-Lower CLR footer_element">
+        &copy; Copyright 2023 - ViralHog, LLC<br />Address: 3701 Trakker Trl Unit 1C<br /> Bozeman, MT 59718-9202 USA<br />Phone: +1 406.922.2588
+      </footer>
+
+    </div>
+
+    
+  </body>
+</html>
